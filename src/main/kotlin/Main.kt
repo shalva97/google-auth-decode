@@ -15,7 +15,9 @@ fun decodeGoogleAuth(data: String): String {
 }
 
 fun String.decodeGoogleAuthMigrationData() {
-    val protoBuffData = extractQueryData(this).decodeFromBase64()
+    val payload = extractQueryData(this)
+        .decodeFromBase64()
+        .parseProtoBuff()
 
 }
 
@@ -32,8 +34,8 @@ internal fun String.decodeFromBase64(): ByteArray {
     return Base64.getDecoder().decode(this)
 }
 
-internal fun String.parseProtoBuff() {
-    Payload
+internal fun ByteArray.parseProtoBuff(): Payload {
+    return Payload.parseFrom(this)
 }
 
 @JvmInline

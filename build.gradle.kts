@@ -13,17 +13,6 @@ repositories {
     mavenCentral()
 }
 
-sourceSets {
-    main {
-//        proto {
-//            srcDir("../protos/")
-//        }
-        java {
-            srcDirs("build/generated/source/proto/main/java/gAuth")
-        }
-    }
-}
-
 dependencies {
     implementation("com.google.protobuf:protobuf-javalite:3.20.1")
     testImplementation(kotlin("test"))
