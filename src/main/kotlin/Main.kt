@@ -1,24 +1,17 @@
 import gAuth.Payload
+import org.apache.commons.codec.binary.Base32
 import java.net.URI
 import java.util.*
 
 fun main() {
-    val data =
-        "CkYKFDCMaZ5zJewkULs87ggCGlaiiP7sEh1CaXR3YXJkZW46c2hhbHZhMjU4QGdtYWlsLmNvbRoJQml0d2FyZGVuIAEoATACCloKCvg55ykVGq72WrwSM3Nzby5zb2hvaG91c2UuY29tOmdpb3JnaS5zaGFsdmFzaHZpbGlAc29ob2hvdXNlLmNvbRoRc3NvLnNvaG9ob3VzZS5jb20gASgBMAIQARgBIAAojZu1Zg=="
-
 
 }
 
-fun decodeGoogleAuth(data: String): String {
-    return Base64.getDecoder().decode(data)
-        .decodeToString()
-}
-
-fun String.decodeGoogleAuthMigrationData() {
-    val payload = extractQueryData(this)
+fun String.decodeGoogleAuthMigrationData(): List<OTPData> {
+    return extractQueryData(this)
         .decodeFromBase64()
-        .parseProtoBuff()
-
+        .parseToProtoBuff()
+        .toDomainModel()
 }
 
 internal fun extractQueryData(data: String): String {
@@ -34,9 +27,14 @@ internal fun String.decodeFromBase64(): ByteArray {
     return Base64.getDecoder().decode(this)
 }
 
-internal fun ByteArray.parseProtoBuff(): Payload {
+internal fun ByteArray.parseToProtoBuff(): Payload {
     return Payload.parseFrom(this)
 }
 
-@JvmInline
-value class Main(val blah: String)
+internal fun Payload.toDomainModel(): List<OTPData> {
+    return this.otpParametersList.map { OTPData(it) }
+}
+
+internal fun decodeOTPSecret(data: ByteArray): String {
+    return Base32().encodeAsString(data).trim { it == '=' }
+}

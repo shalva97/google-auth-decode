@@ -15,6 +15,7 @@ repositories {
 
 dependencies {
     implementation("com.google.protobuf:protobuf-javalite:3.20.1")
+    implementation("commons-codec:commons-codec:1.15") // Base32
     testImplementation(kotlin("test"))
 }
 
