@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.github.shalva97"
-version = "0.0.3"
+version = "0.0.4"
 
 repositories {
     mavenCentral()
@@ -40,6 +40,20 @@ protobuf {
                     option("lite")
                 }
             }
+        }
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github.shalva97"
+            artifactId = "google-auth-decode"
+            version = "0.0.4"
+
+            from(components["java"])
+
+            artifact("$buildDir/libs/${project.name}.jar")
         }
     }
 }
