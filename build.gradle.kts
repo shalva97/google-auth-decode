@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.github.shalva97"
-version = "0.0.1"
+version = "0.0.3"
 
 repositories {
     mavenCentral()
