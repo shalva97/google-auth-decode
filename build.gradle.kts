@@ -4,10 +4,11 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("jvm") version "1.6.21"
     id("com.google.protobuf") version "0.8.17"
+    `maven-publish`
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
+group = "com.github.shalva97"
+version = "0.0.1"
 
 repositories {
     mavenCentral()
