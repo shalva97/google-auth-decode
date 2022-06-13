@@ -1,2 +1,2 @@
-rootProject.name = "Google Auth Be Gone"
+rootProject.name = "google-auth-decode"
 
