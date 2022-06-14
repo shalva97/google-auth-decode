@@ -7,7 +7,7 @@ fun main() {
 
 }
 
-fun String.decodeGoogleAuthMigrationData(): List<OTPData> {
+fun String.decodeGoogleAuthMigrationURI(): List<OTPData> {
     return extractQueryData(this)
         .decodeFromBase64()
         .parseToProtoBuff()
@@ -17,10 +17,12 @@ fun String.decodeGoogleAuthMigrationData(): List<OTPData> {
 internal fun extractQueryData(data: String): String {
     val uri = URI.create(data)
     val secretData = uri.query.split("=")
-    if (secretData.first() == "data") {
-        return secretData.component2()
-    }
-    throw java.lang.IllegalArgumentException("Can not find \"data=\" query parameter")
+
+    require(uri.scheme == "otpauth-migration") { "Wrong scheme" }
+    require(uri.host == "offline") { "Wrong host" }
+    require(secretData.first() == "data") { "Can not find \"data=\" query parameter" }
+
+    return secretData.component2()
 }
 
 internal fun String.decodeFromBase64(): ByteArray {

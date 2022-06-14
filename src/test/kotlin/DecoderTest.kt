@@ -37,7 +37,7 @@ class DecoderTest {
 
     @Test
     fun decodeGoogleAuthMigrationData_decodesDataCorrectly() {
-        val data = exportedFromGoogleAuth.decodeGoogleAuthMigrationData()
+        val data = exportedFromGoogleAuth.decodeGoogleAuthMigrationURI()
 
         assert(data.first().secret == "SHIQ")
     }
