@@ -32,7 +32,7 @@ dependencyResolutionManagement {
 Step 2. Add the dependency
 
     dependencies {
-        implementation 'com.github.shalva97:untitled:Tag'
+        implementation 'com.github.shalva97:untitled:0.0.6'
     }
 
 # Usage
@@ -54,3 +54,6 @@ listOfOTPs // will be a list of all the OTP data contained in the URI
 - https://github.com/scito/extract_otp_secret_keys
 - https://github.com/EasyG0ing1/GoogleAuthDecoder
 - Other projects: https://github.com/topics/google-authenticator
+
+
+- https://keepachangelog.com/
