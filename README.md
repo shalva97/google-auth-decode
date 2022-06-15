@@ -37,13 +37,19 @@ Step 2. Add the dependency
 
 # Usage
 
-There is an extension `fun String.decodeGoogleAuthMigrationData()`, which you can use like this
+There is an extension `fun String.decodeGoogleAuthMigrationURI()`, which you can use like this
 
 ```kotlin
 val listOfOTPs =
     "otpauth-migration://offline?data=ChsKApHREgphc3M6dG9pbGV0GgNhc3MgASgBMAIQARgBIAAo05KP1%2F3%2F%2F%2F%2F%2FAQ%3D%3D"
-        .decodeGoogleAuthMigrationData()
+        .decodeGoogleAuthMigrationURI()
 listOfOTPs // will be a list of all the OTP data contained in the URI
+
+// java
+
+String uriText = "otpauth-migration://...";
+var listOfOTPs = GoogleAuthDecoderKt.decodeGoogleAuthMigrationURI(uriText);
+
 ```
 
 # Similar projects
