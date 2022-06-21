@@ -52,10 +52,6 @@ var listOfOTPs = GoogleAuthDecoderKt.decodeGoogleAuthMigrationURI(uriText);
 
 ```
 
-# CLI
-
-decode "otp-data-here"
-
 # Similar projects
 
 - https://rootprojects.org/authenticator/
