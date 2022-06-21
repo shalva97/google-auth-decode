@@ -15,10 +15,10 @@ import kotlin.system.exitProcess
 class Checksum : Callable<Int> {
 
     @CommandLine.Parameters(description = ["Text from scanned QR code from google, like otp-migration//offline/..."])
-    lateinit var rawURI: String
+    lateinit var migrationData: String
 
     override fun call(): Int {
-        rawURI.decodeGoogleAuthMigrationURI().run(::println)
+        migrationData.decodeGoogleAuthMigrationURI().run(::println)
         return 0
     }
 }
