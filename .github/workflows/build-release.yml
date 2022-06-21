@@ -47,5 +47,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: ./*
-          tag_name: v${{needs.build.outputs.tag-name}}
-          name: version V${{ github.run_number }}
+          tag_name: ${{needs.build.outputs.tag-name}}
+          name: version v${{needs.build.outputs.tag-name}}
