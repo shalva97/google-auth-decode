@@ -1,0 +1,43 @@
+name: 'Build and release'
+
+on: workflow_dispatch
+
+jobs:
+  build-pptx:
+    name: 'Build the project'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout Code'
+      - uses: actions/checkout@v3
+        with:
+          ref: master
+      - name: 'Build shadow jar'
+      - uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: temurin
+          cache: 'gradle'
+      - uses: gradle/gradle-build-action@v2
+        with:
+          arguments: shadowJar
+      - name: 'Upload Artifacts'
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifacts
+          path: ./build/libs/*-all.jar
+  release-content:
+    name: 'Create GitHub Release'
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - name: 'Download Artifacts'
+        uses: actions/download-artifact@v2
+        with:
+          name: artifacts
+      - name: 'Create GitHub Release'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ./*.jar
+          tag_name: v${{ github.run_number }}
+          name: Release V${{ github.run_number }}
