@@ -6,6 +6,8 @@ jobs:
   build:
     name: 'Build the project'
     runs-on: ubuntu-latest
+    outputs:
+      tag-name: ${{ steps.tag.outputs.tag }}
     steps:
       - name: 'Checkout Code'
         uses: actions/checkout@v3
@@ -26,6 +28,10 @@ jobs:
         with:
           name: artifacts
           path: ./build/libs/*-all.jar
+      - name: 'export version number'
+        id: tag
+        run: ./gradlew properties -q | grep "version:" | awk '{ print "::set-output name=tag::"$2 }'
+
   release-content:
     name: 'Create GitHub Release'
     runs-on: ubuntu-latest
@@ -41,5 +47,5 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: ./*
-          tag_name: v${{ github.run_number }}
-          name: Release V${{ github.run_number }}
+          tag_name: v${{needs.build.outputs.tag-name}}
+          name: version V${{ github.run_number }}
