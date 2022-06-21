@@ -32,7 +32,7 @@ dependencyResolutionManagement {
 Step 2. Add the dependency
 
     dependencies {
-        implementation("com.github.shalva97:google-auth-decode:0.0.9")
+        implementation("com.github.shalva97:google-auth-decode:0.0.10")
     }
 
 # Usage
