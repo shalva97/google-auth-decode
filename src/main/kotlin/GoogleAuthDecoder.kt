@@ -1,17 +1,32 @@
 import gAuth.Payload
 import org.apache.commons.codec.binary.Base32
+import picocli.CommandLine
 import java.net.URI
 import java.util.*
+import java.util.concurrent.Callable
+import kotlin.system.exitProcess
 
-fun main() {
+@CommandLine.Command(
+    name = "google-auth-decode",
+    mixinStandardHelpOptions = true,
+    version = ["0.0.8"],
+    description = ["Prints the TOTP secrets to STDOUT."]
+)
+class Checksum : Callable<Int> {
 
+    @CommandLine.Parameters(description = ["Text from scanned QR code from google, like otp-migration//offline/..."])
+    lateinit var rawURI: String
+
+    override fun call(): Int {
+        rawURI.decodeGoogleAuthMigrationURI().run(::println)
+        return 0
+    }
 }
 
+fun main(args: Array<String>): Unit = exitProcess(CommandLine(Checksum()).execute(*args))
+
 fun String.decodeGoogleAuthMigrationURI(): List<OTPData> {
-    return extractQueryData(this)
-        .decodeFromBase64()
-        .parseToProtoBuff()
-        .toDomainModel()
+    return extractQueryData(this).decodeFromBase64().parseToProtoBuff().toDomainModel()
 }
 
 internal fun extractQueryData(data: String): String {

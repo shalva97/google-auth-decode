@@ -5,6 +5,10 @@ class DecoderTest {
     private val exportedFromGoogleAuth =
         "otpauth-migration://offline?data=ChsKApHREgphc3M6dG9pbGV0GgNhc3MgASgBMAIQARgBIAAo05KP1%2F3%2F%2F%2F%2F%2FAQ%3D%3D"
 
+    // from dim13/otpauth README
+    private val exportedFromGoogleAuth2 =
+        "otpauth-migration://offline?data=CjEKCkhlbGxvId6tvu8SGEV4YW1wbGU6YWxpY2VAZ29vZ2xlLmNvbRoHRXhhbXBsZTAC"
+
     @Test
     fun extractQueryData_returnsCorrectValues() {
 
@@ -38,8 +42,11 @@ class DecoderTest {
     @Test
     fun decodeGoogleAuthMigrationData_decodesDataCorrectly() {
         val data = exportedFromGoogleAuth.decodeGoogleAuthMigrationURI()
-
         assert(data.first().secret == "SHIQ")
+
+        val data2 = exportedFromGoogleAuth2.decodeGoogleAuthMigrationURI()
+        assert(data2.first().secret == "JBSWY3DPEHPK3PXP")
+
     }
 }
 
