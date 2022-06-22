@@ -18,7 +18,7 @@ class Checksum : Callable<Int> {
     lateinit var migrationData: String
 
     override fun call(): Int {
-        migrationData.decodeGoogleAuthMigrationURI().run(::println)
+        migrationData.decodeGoogleAuthMigrationURI().forEach(::println)
         return 0
     }
 }
