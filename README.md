@@ -1,9 +1,17 @@
-# About
+# About [![](https://jitpack.io/v/shalva97/google-auth-decode.svg)](https://jitpack.io/#shalva97/google-auth-decode)
 
 This library will help you to decode Google Auth's URI which looks like this
 
 ```
 otpauth-migration://offline?data=ChsKApHREgphc3M6dG9pbGV0GgNhc3MgASgBMAIQARgBIAAo05KP1%2F3%2F%2F%2F%2F%2FAQ%3D%3D
+```
+
+# CLI
+
+Download the jar from the latest release page and run it:
+
+```bash
+java -jar google-auth-decode-0.0.10-all.jar "otpauth-migration://offline?data=..."
 ```
 
 # Install
@@ -40,14 +48,11 @@ Step 2. Add the dependency
 There is an extension `fun String.decodeGoogleAuthMigrationURI()`, which you can use like this
 
 ```kotlin
-val listOfOTPs =
-    "otpauth-migration://offline?data=ChsKApHREgphc3M6dG9pbGV0GgNhc3MgASgBMAIQARgBIAAo05KP1%2F3%2F%2F%2F%2F%2FAQ%3D%3D"
-        .decodeGoogleAuthMigrationURI()
+val listOfOTPs = "otpauth-migration://offline?data=...".decodeGoogleAuthMigrationURI()
 listOfOTPs // will be a list of all the OTP data contained in the URI
 
 // java
-
-String uriText = "otpauth-migration://...";
+String uriText = "otpauth-migration://offline?data=...";
 var listOfOTPs = GoogleAuthDecoderKt.decodeGoogleAuthMigrationURI(uriText);
 
 ```
