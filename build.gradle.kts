@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.github.shalva97"
-version = "0.0.10"
+version = "0.0.11"
 
 val jar by tasks.getting(Jar::class) {
     manifest {

@@ -9,10 +9,10 @@ import kotlin.system.exitProcess
 @CommandLine.Command(
     name = "google-auth-decode",
     mixinStandardHelpOptions = true,
-    version = ["0.0.8"],
+    version = ["0.0.11"],
     description = ["Prints the TOTP secrets to STDOUT."]
 )
-class Checksum : Callable<Int> {
+class CLI : Callable<Int> {
 
     @CommandLine.Parameters(description = ["Text from scanned QR code from google, like otp-migration//offline/..."])
     lateinit var migrationData: String
@@ -23,7 +23,7 @@ class Checksum : Callable<Int> {
     }
 }
 
-fun main(args: Array<String>): Unit = exitProcess(CommandLine(Checksum()).execute(*args))
+fun main(args: Array<String>): Unit = exitProcess(CommandLine(CLI()).execute(*args))
 
 fun String.decodeGoogleAuthMigrationURI(): List<OTPData> {
     return extractQueryData(this).decodeFromBase64().parseToProtoBuff().toDomainModel()
