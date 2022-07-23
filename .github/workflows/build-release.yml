@@ -22,7 +22,7 @@ jobs:
       - name: 'Build native executables'
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: linkReleaseExecutableMacosX64 linkReleaseExecutableMingwX64 linkReleaseExecutableLinuxX86
+          arguments: linkReleaseExecutableMacosX64 linkReleaseExecutableMingwX64 linkReleaseExecutableLinuxX64
       - name: 'Build shadow jar'
         uses: gradle/gradle-build-action@v2
         with:
@@ -42,11 +42,11 @@ jobs:
         with:
           name: artifacts2
           path: .build/bin/MingwX64/releaseExecutable/google-auth-decode-MingwX64.kexe
-      - name: 'Upload LinuxX86'
+      - name: 'Upload LinuxX64'
         uses: actions/upload-artifact@v2
         with:
           name: artifacts3
-          path: .build/bin/LinuxX86/releaseExecutable/google-auth-decode-LinuxX86.kexe
+          path: .build/bin/LinuxX64/releaseExecutable/google-auth-decode-LinuxX64.kexe
       - name: 'export version number'
         id: tag
         run: ./gradlew properties -q | grep "version:" | awk '{ print "::set-output name=tag::"$2 }'
