@@ -36,17 +36,17 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: artifacts1
-          path: .build/bin/macosX64/releaseExecutable/google-auth-decode-macosX64.kexe
+          path: ./build/bin/macosX64/releaseExecutable/google-auth-decode-macosX64.kexe
       - name: 'Upload MingwX64'
         uses: actions/upload-artifact@v2
         with:
           name: artifacts2
-          path: .build/bin/MingwX64/releaseExecutable/google-auth-decode-MingwX64.kexe
+          path: ./build/bin/MingwX64/releaseExecutable/google-auth-decode-MingwX64.kexe
       - name: 'Upload LinuxX64'
         uses: actions/upload-artifact@v2
         with:
           name: artifacts3
-          path: .build/bin/LinuxX64/releaseExecutable/google-auth-decode-LinuxX64.kexe
+          path: ./build/bin/LinuxX64/releaseExecutable/google-auth-decode-LinuxX64.kexe
       - name: 'export version number'
         id: tag
         run: ./gradlew properties -q | grep "version:" | awk '{ print "::set-output name=tag::"$2 }'
