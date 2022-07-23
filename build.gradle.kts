@@ -5,10 +5,11 @@ plugins {
     kotlin("plugin.serialization") version "1.7.10"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("java")
+    `maven-publish`
 }
 
 group = "com.github.shalva97"
-version = "0.0.11"
+version = "0.0.12"
 
 kotlin {
     jvm {
@@ -42,6 +43,14 @@ tasks.withType<ShadowJar> {
     from(main.output)
     configurations += main.compileDependencyFiles
     configurations += main.runtimeDependencyFiles
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            from(components["kotlin"])
+        }
+    }
 }
 
 repositories {
