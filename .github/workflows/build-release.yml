@@ -5,7 +5,7 @@ on: workflow_dispatch
 jobs:
   build:
     name: 'Build the project'
-    runs-on: ubuntu-latest
+    runs-on: macos-12
     outputs:
       tag-name: ${{ steps.tag.outputs.tag }}
     steps:
