@@ -1,6 +1,10 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     kotlin("multiplatform") version "1.7.0"
     kotlin("plugin.serialization") version "1.7.10"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("java")
 }
 
 group = "com.github.shalva97"
@@ -27,6 +31,17 @@ kotlin {
     sourceSets {
         val commonMain by getting
     }
+}
+
+tasks.withType<ShadowJar> {
+    manifest {
+        attributes("Main-Class" to "MainKt")
+    }
+    archiveClassifier.set("all")
+    val main by kotlin.jvm().compilations
+    from(main.output)
+    configurations += main.compileDependencyFiles
+    configurations += main.runtimeDependencyFiles
 }
 
 repositories {
