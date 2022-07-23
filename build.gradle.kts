@@ -1,59 +1,57 @@
-import com.google.protobuf.gradle.*
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    kotlin("jvm") version "1.6.21"
-    id("com.google.protobuf") version "0.8.17"
-    kotlin("kapt") version "1.3.70"
+    kotlin("multiplatform") version "1.7.0"
+    kotlin("plugin.serialization") version "1.7.10"
     id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("java")
     `maven-publish`
 }
 
 group = "com.github.shalva97"
-version = "0.0.11"
+version = "0.0.12"
 
-val jar by tasks.getting(Jar::class) {
-    manifest {
-        attributes["Main-Class"] = "GoogleAuthDecoderKt"
-    }
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    implementation("com.google.protobuf:protobuf-javalite:3.21.1")
-    implementation("commons-codec:commons-codec:1.15")
-
-    implementation("info.picocli:picocli:4.6.3")
-    kapt("info.picocli:picocli-codegen:4.6.3")
-
-    testImplementation(kotlin("test"))
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
-}
-
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:3.19.4"
-    }
-
-    generateProtoTasks {
-        ofSourceSet("main").forEach { task ->
-            task.builtins {
-                getByName("java") {
-                    option("lite")
-                }
+kotlin {
+    jvm {
+        val main by compilations.getting {
+            kotlinOptions {
+                jvmTarget = "11"
             }
         }
     }
+    mingwX64 {
+        binaries {
+            executable {
+                baseName = "google-auth-decode-mingwX64"
+            }
+        }
+    }
+
+    macosX64 {
+        binaries {
+            executable {
+                entryPoint = "main"
+                baseName = "google-auth-decode-macosX64"
+            }
+        }
+    }
+
+    //    js().nodejs() TODO Could not resolve com.eygraber:uri-kmp:0.0.4
+
+    sourceSets {
+        val commonMain by getting
+    }
+}
+
+tasks.withType<ShadowJar> {
+    manifest {
+        attributes("Main-Class" to "MainKt")
+    }
+    archiveClassifier.set("all")
+    val main by kotlin.jvm().compilations
+    from(main.output)
+    configurations += main.compileDependencyFiles
+    configurations += main.runtimeDependencyFiles
 }
 
 publishing {
@@ -64,8 +62,16 @@ publishing {
     }
 }
 
-kapt {
-    arguments {
-        arg("project", "${project.group}/${project.name}")
-    }
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    commonMainImplementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.3.3")
+    commonMainImplementation("com.eygraber:uri-kmp:0.0.4")
+    commonMainImplementation("io.matthewnelson.kotlin-components:encoding-base64:1.1.2")
+    commonMainImplementation("io.matthewnelson.kotlin-components:encoding-base32:1.1.2")
+    commonMainImplementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.5")
+
+    commonTestImplementation(kotlin("test"))
 }

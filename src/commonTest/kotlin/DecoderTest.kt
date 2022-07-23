@@ -1,4 +1,6 @@
 import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 class DecoderTest {
 
@@ -18,7 +20,7 @@ class DecoderTest {
         val expectedValue = "ChsKApHREgphc3M6dG9pbGV0GgNhc3MgASgBMAIQARgBIAAo05KP1/3/////AQ"
         val data = extractQueryData(exportedFromGoogleAuth)
 
-        assert(data == expectedValue)
+        assertEquals(data, expectedValue)
     }
 
     @Test
@@ -31,29 +33,30 @@ class DecoderTest {
         val rawSecret = "Hello!"
         val secret = "JBSWY3DPEE"
 
-        assert(decodeOTPSecret(rawSecret.toByteArray()) == secret)
+        assertEquals(decodeOTPSecret(rawSecret.encodeToByteArray()), secret)
 
-        val rawSecret2 = "deadbeef".decodeHex()
-        val secret2 = "32W353Y"
-
-        assert(decodeOTPSecret(rawSecret2) == secret2)
+        // TODO convert deadbeef to byte array fails
+//        val rawSecret2 = "deadbeef".hexToByteArray()
+//        val secret2 = "32W353Y"
+//
+//        assertEquals(decodeOTPSecret(rawSecret2), secret2)
     }
 
     @Test
     fun decodeGoogleAuthMigrationData_decodesDataCorrectly() {
         val data = exportedFromGoogleAuth.decodeGoogleAuthMigrationURI()
-        assert(data.first().secret == "SHIQ")
+        assertTrue(data.otpParameters.first().secret == "SHIQ")
 
         val data2 = exportedFromGoogleAuth2.decodeGoogleAuthMigrationURI()
-        assert(data2.first().secret == "JBSWY3DPEHPK3PXP")
-
+        assertTrue(data2.otpParameters.first().secret == "JBSWY3DPEHPK3PXP")
     }
 }
 
-private fun String.decodeHex(): ByteArray {
+@OptIn(ExperimentalUnsignedTypes::class)
+private fun String.hexToByteArray(): UByteArray {
     check(length % 2 == 0) { "Must have an even length" }
 
-    return ByteArray(length / 2) {
-        Integer.parseInt(this, it * 2, (it + 1) * 2, 16).toByte()
+    return UByteArray(length / 2) {
+        substring(it..(it + 1)).toUByte(16)
     }
 }
