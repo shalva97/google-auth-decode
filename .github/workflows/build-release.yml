@@ -41,12 +41,12 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: artifacts
-          path: ./build/bin/MingwX64/releaseExecutable/google-auth-decode-mingwX64.kexe
+          path: ./build/bin/mingwX64/releaseExecutable/google-auth-decode-mingwX64.exe
       - name: 'Upload LinuxX64'
         uses: actions/upload-artifact@v2
         with:
           name: artifacts
-          path: ./build/bin/LinuxX64/releaseExecutable/google-auth-decode-linuxX64.kexe
+          path: ./build/bin/linuxX64/releaseExecutable/google-auth-decode-linuxX64.kexe
       - name: 'export version number'
         id: tag
         run: ./gradlew properties -q | grep "version:" | awk '{ print "::set-output name=tag::"$2 }'
