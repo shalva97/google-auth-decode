@@ -1,7 +1,7 @@
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 
-internal fun main(args: Array<String>) {
+fun main(args: Array<String>) {
     val parser = ArgParser("google-auth-decode")
     val migrationData by parser.argument(
         ArgType.String,

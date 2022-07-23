@@ -19,15 +19,24 @@ kotlin {
             }
         }
     }
-    mingwX64()
-
-    macosX64("native") {
+    mingwX64 {
         binaries {
             executable {
-                entryPoint = "main"
+                baseName = "google-auth-decode-mingwX64"
             }
         }
     }
+
+    macosX64 {
+        binaries {
+            executable {
+                entryPoint = "main"
+                baseName = "google-auth-decode-macosX64"
+            }
+        }
+    }
+
+    //    js().nodejs() TODO Could not resolve com.eygraber:uri-kmp:0.0.4
 
     sourceSets {
         val commonMain by getting

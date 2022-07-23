@@ -1,6 +1,7 @@
 import com.eygraber.uri.Uri
 import io.matthewnelson.component.base64.decodeBase64ToArray
 import io.matthewnelson.component.encoding.base32.encodeBase32
+import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.decodeFromByteArray
 import kotlinx.serialization.protobuf.ProtoBuf
 
@@ -30,6 +31,7 @@ internal fun String.decodeFromBase64(): ByteArray {
     return decodeBase64ToArray()!!
 }
 
+@OptIn(ExperimentalSerializationApi::class)
 internal fun ByteArray.parseToProtoBuff(): PayloadDTO {
     return ProtoBuf.decodeFromByteArray(this)
 }
