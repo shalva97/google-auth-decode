@@ -38,6 +38,14 @@ kotlin {
 
     //    js().nodejs() TODO Could not resolve com.eygraber:uri-kmp:0.0.4
 
+    linuxX64 {
+        binaries {
+            executable {
+                baseName = "google-auth-decode-linuxX64"
+            }
+        }
+    }
+
     sourceSets {
         val commonMain by getting
     }
