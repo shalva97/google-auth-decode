@@ -35,17 +35,17 @@ jobs:
       - name: 'Upload macosX64'
         uses: actions/upload-artifact@v2
         with:
-          name: artifacts1
+          name: artifacts
           path: ./build/bin/macosX64/releaseExecutable/google-auth-decode-macosX64.kexe
       - name: 'Upload MingwX64'
         uses: actions/upload-artifact@v2
         with:
-          name: artifacts2
+          name: artifacts
           path: ./build/bin/MingwX64/releaseExecutable/google-auth-decode-MingwX64.kexe
       - name: 'Upload LinuxX64'
         uses: actions/upload-artifact@v2
         with:
-          name: artifacts3
+          name: artifacts
           path: ./build/bin/LinuxX64/releaseExecutable/google-auth-decode-LinuxX64.kexe
       - name: 'export version number'
         id: tag
@@ -65,15 +65,15 @@ jobs:
       - name: 'Download Jar Artifact'
         uses: actions/download-artifact@v2
         with:
-          name: artifacts1
+          name: artifacts
       - name: 'Download Jar Artifact'
         uses: actions/download-artifact@v2
         with:
-          name: artifacts2
+          name: artifacts
       - name: 'Download Jar Artifact'
         uses: actions/download-artifact@v2
         with:
-          name: artifacts3
+          name: artifacts
       - name: 'Create GitHub Release'
         uses: softprops/action-gh-release@v1
         with:
