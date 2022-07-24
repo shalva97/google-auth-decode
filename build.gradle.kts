@@ -22,7 +22,15 @@ kotlin {
     mingwX64 {
         binaries {
             executable {
-                baseName = "google-auth-decode-mingwX64"
+                baseName = "google-auth-decode-$version-mingwX64"
+            }
+        }
+    }
+
+    mingwX86 {
+        binaries {
+            executable {
+                baseName = "google-auth-decode-$version-mingwX86"
             }
         }
     }
@@ -31,7 +39,7 @@ kotlin {
         binaries {
             executable {
                 entryPoint = "main"
-                baseName = "google-auth-decode-macosX64"
+                baseName = "google-auth-decode-$version-macosX64"
             }
         }
     }
@@ -41,7 +49,7 @@ kotlin {
     linuxX64 {
         binaries {
             executable {
-                baseName = "google-auth-decode-linuxX64"
+                baseName = "google-auth-decode-$version-linuxX64"
             }
         }
     }

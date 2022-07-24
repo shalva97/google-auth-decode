@@ -36,17 +36,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: artifacts
-          path: ./build/bin/macosX64/releaseExecutable/google-auth-decode-macosX64.kexe
-      - name: 'Upload MingwX64'
-        uses: actions/upload-artifact@v2
-        with:
-          name: artifacts
-          path: ./build/bin/mingwX64/releaseExecutable/google-auth-decode-mingwX64.exe
-      - name: 'Upload LinuxX64'
-        uses: actions/upload-artifact@v2
-        with:
-          name: artifacts
-          path: ./build/bin/linuxX64/releaseExecutable/google-auth-decode-linuxX64.kexe
+          path: ./build/bin/*/releaseExecutable/google-auth-decode-*exe
       - name: 'export version number'
         id: tag
         run: ./gradlew properties -q | grep "version:" | awk '{ print "::set-output name=tag::"$2 }'
@@ -58,14 +48,6 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: 'Download Jar Artifact'
-        uses: actions/download-artifact@v2
-        with:
-          name: artifacts
-      - name: 'Download Jar Artifact'
-        uses: actions/download-artifact@v2
-        with:
-          name: artifacts
       - name: 'Download Jar Artifact'
         uses: actions/download-artifact@v2
         with:
