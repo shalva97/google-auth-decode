@@ -27,14 +27,6 @@ kotlin {
         }
     }
 
-    mingwX86 {
-        binaries {
-            executable {
-                baseName = "google-auth-decode-$version-mingwX86"
-            }
-        }
-    }
-
     macosX64 {
         binaries {
             executable {
