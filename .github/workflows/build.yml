@@ -6,8 +6,6 @@ jobs:
   build:
     name: 'Build the project and release'
     runs-on: macos-12
-    outputs:
-      tag-name: ${{ steps.tag.outputs.tag }}
     steps:
       - name: 'Checkout Code'
         uses: actions/checkout@v3
@@ -30,6 +28,3 @@ jobs:
             ./build/libs/*-all.jar
             ./build/bin/*/releaseExecutable/google-auth-decode-*exe
           if-no-files-found: error
-#      - name: 'export version number'
-#        id: tag
-#        run: ./gradlew properties -q | grep "version:" | awk '{ print "::set-output name=tag::"$2 }'

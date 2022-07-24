@@ -6,7 +6,6 @@ jobs:
   release-content:
     name: 'Create GitHub Release'
     runs-on: ubuntu-latest
-    needs: [ build ]
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
