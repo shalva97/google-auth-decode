@@ -22,7 +22,7 @@ jobs:
       - name: 'Build native executables'
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: linkReleaseExecutableMacosX64 linkReleaseExecutableMingwX64 linkReleaseExecutableLinuxX64
+          arguments: linkReleaseExecutableMacosX64 linkReleaseExecutableMingwX64 linkReleaseExecutableLinuxX64 linkReleaseExecutableLinuxX86
       - name: 'Build shadow jar'
         uses: gradle/gradle-build-action@v2
         with:
@@ -48,10 +48,6 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - name: 'Download Jar Artifact'
-        uses: actions/download-artifact@v2
-        with:
-          name: artifacts
       - name: 'Download Jar Artifact'
         uses: actions/download-artifact@v2
         with:
