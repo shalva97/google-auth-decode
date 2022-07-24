@@ -1,0 +1,35 @@
+name: 'Build'
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    name: 'Build the project and release'
+    runs-on: macos-12
+    outputs:
+      tag-name: ${{ steps.tag.outputs.tag }}
+    steps:
+      - name: 'Checkout Code'
+        uses: actions/checkout@v3
+        with:
+          ref: master
+      - name: 'Set up Java'
+        uses: actions/setup-java@v2
+        with:
+          java-version: 11
+          distribution: temurin
+          cache: 'gradle'
+      - name: 'Build executables'
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: linkReleaseExecutableMacosX64 linkReleaseExecutableMingwX64 linkReleaseExecutableLinuxX64 shadowJar
+      - name: 'Upload artifacts'
+        uses: actions/upload-artifact@v2
+        with:
+          path: |
+            ./build/libs/*-all.jar
+            ./build/bin/*/releaseExecutable/google-auth-decode-*exe
+          if-no-files-found: error
+#      - name: 'export version number'
+#        id: tag
+#        run: ./gradlew properties -q | grep "version:" | awk '{ print "::set-output name=tag::"$2 }'
