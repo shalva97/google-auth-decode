@@ -17,10 +17,10 @@ class DecoderTest {
         val exportedFromGoogleAuth =
             "otpauth-migration://offline?data=ChsKApHREgphc3M6dG9pbGV0GgNhc3MgASgBMAIQARgBIAAo05KP1%2F3%2F%2F%2F%2F%2FAQ%3D%3D"
 
-        val expectedValue = "ChsKApHREgphc3M6dG9pbGV0GgNhc3MgASgBMAIQARgBIAAo05KP1/3/////AQ"
+        val expectedValue = "ChsKApHREgphc3M6dG9pbGV0GgNhc3MgASgBMAIQARgBIAAo05KP1/3/////AQ=="
         val data = extractQueryData(exportedFromGoogleAuth)
 
-        assertEquals(data, expectedValue)
+        assertEquals(expectedValue, data)
     }
 
     @Test

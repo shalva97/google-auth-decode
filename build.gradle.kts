@@ -36,7 +36,7 @@ kotlin {
         }
     }
 
-    //    js().nodejs() TODO Could not resolve com.eygraber:uri-kmp:0.0.4
+    js().browser()
 
     linuxX64 {
         binaries {
@@ -76,10 +76,10 @@ repositories {
 
 dependencies {
     commonMainImplementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.3.3")
-    commonMainImplementation("com.eygraber:uri-kmp:0.0.6")
     commonMainImplementation("io.matthewnelson.kotlin-components:encoding-base64:1.1.2")
     commonMainImplementation("io.matthewnelson.kotlin-components:encoding-base32:1.1.3")
     commonMainImplementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.5")
+    commonMainImplementation("io.ktor:ktor-http:2.0.2")
 
     commonTestImplementation(kotlin("test"))
 }
