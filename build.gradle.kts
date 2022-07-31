@@ -36,7 +36,9 @@ kotlin {
         }
     }
 
-    js().browser()
+    js(IR) {
+        browser()
+    }
 
     linuxX64 {
         binaries {
@@ -78,8 +80,12 @@ dependencies {
     commonMainImplementation("org.jetbrains.kotlinx:kotlinx-serialization-protobuf:1.3.3")
     commonMainImplementation("io.matthewnelson.kotlin-components:encoding-base64:1.1.2")
     commonMainImplementation("io.matthewnelson.kotlin-components:encoding-base32:1.1.3")
-    commonMainImplementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.5")
+//    commonMainImplementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.5")
     commonMainImplementation("io.ktor:ktor-http:2.0.2")
-
+//    commonMainImplementation("org.jetbrains.kotlinx:kotlinx-html-js:0.7.5")
     commonTestImplementation(kotlin("test"))
+}
+
+rootProject.extensions.configure<org.jetbrains.kotlin.gradle.targets.js.nodejs.NodeJsRootExtension> {
+    versions.webpackCli.version = "4.10.0"
 }
