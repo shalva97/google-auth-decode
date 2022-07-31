@@ -11,5 +11,4 @@ fun main(args: Array<String>) {
     parser.parse(args)
 
     migrationData.decodeGoogleAuthMigrationURI().otpParameters.forEach(::println)
-
 }
