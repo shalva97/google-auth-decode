@@ -1,4 +1,4 @@
-import io.ktor.http.*
+import com.eygraber.uri.Uri
 import io.matthewnelson.component.base64.decodeBase64ToArray
 import io.matthewnelson.component.encoding.base32.encodeBase32
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -17,13 +17,14 @@ private fun PayloadDTO.toDomainModel(): Payload {
 }
 
 internal fun extractQueryData(data: String): String {
-    val url = Url(data)
+    val uri = Uri.parse(data)
+    val secretData = uri.query!!.split("=")
 
-    require(url.protocol.name == "otpauth-migration") { "Wrong scheme" }
-    require(url.host == "offline") { "Wrong host" }
-    require(url.parameters["data"] != null) { "Can not find \"data=\" query parameter" }
+    require(uri.scheme == "otpauth-migration") { "Wrong scheme" }
+    require(uri.host == "offline") { "Wrong host" }
+    require(secretData.first() == "data") { "Can not find \"data=\" query parameter" }
 
-    return url.parameters["data"]!!
+    return secretData.component2()
 }
 
 internal fun String.decodeFromBase64(): ByteArray {
