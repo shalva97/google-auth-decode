@@ -2,8 +2,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import org.jetbrains.compose.web.attributes.InputType
-import org.jetbrains.compose.web.css.padding
-import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
 import org.jetbrains.compose.web.renderComposable
 
@@ -11,6 +10,7 @@ fun main() {
 
     var code by mutableStateOf("")
     var decoded by mutableStateOf("")
+
     renderComposable(rootElementId = "root") {
         Div({ style { padding(25.px) } }) {
             Input(InputType.Text) {
@@ -31,6 +31,16 @@ fun main() {
             }
             Br()
             Text(decoded)
+        }
+        Div({
+            style {
+                position(Position.Absolute);
+                bottom(10.px); right(10.px);
+                width(100.percent);
+                textAlign("right")
+            }
+        }) {
+            Text("Version: " + "0.0.13") // TODO somehow get version name from Gradle
         }
     }
 }
