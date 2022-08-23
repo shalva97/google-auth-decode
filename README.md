@@ -8,7 +8,7 @@ otpauth-migration://offline?data=ChsKApHREgphc3M6dG9pbGV0GgNhc3MgASgBMAIQARgBIAA
 
 # CLI
 
-Download the executables and run them. For example download jar from the latest release page and run it:
+Download the executables and run them or use the web version from about section. For example download jar from the latest release page and run it:
 
 ```bash
 $ java -jar google-auth-decode-0.0.12-all.jar "otpauth-migration://offline?data=Cj8KFD3GyqSCSm0oh2eyMx4gtDFmy4XZEhhBQ01FIENvOmpvaG5AZXhhbXBsZS5jb20aB0FDTUUgQ28gASgBMAIKWQoUmWnif8JDwjlbrmF6aCME%2FSEWkVkSJUtvdGxpbiBnb29kIGphdmEgYmFkOmpvaG5AZXhhbXBsZS5jb20aFEtvdGxpbiBnb29kIGphdmEgYmFkIAEoATACCjkKFE62Apiv1fDVj9%2Fm5dEtIK60BBmfEhVCbGFoOmpvaG5AZXhhbXBsZS5jb20aBEJsYWggASgBMAIKOQoU%2FPHoXjuc6zFhB5ahA9TzNUCu7SwSFWFzZGY6am9obkBleGFtcGxlLmNvbRoEYXNkZiABKAEwAhABGAEgACiHg9OF%2Bf%2F%2F%2F%2F8B"
