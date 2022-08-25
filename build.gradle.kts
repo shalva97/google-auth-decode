@@ -1,7 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    kotlin("multiplatform") version "1.7.10"
+    kotlin("multiplatform") version "1.7.0"
     kotlin("plugin.serialization") version "1.7.10"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("java")
@@ -82,7 +82,6 @@ dependencies {
     commonMainImplementation("io.matthewnelson.kotlin-components:encoding-base64:1.1.3")
     commonMainImplementation("io.matthewnelson.kotlin-components:encoding-base32:1.1.3")
     commonMainImplementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.5")
-    commonMainImplementation("io.ktor:ktor-http:2.1.0")
     commonMainImplementation("com.eygraber:uri-kmp:0.0.6")
     commonTestImplementation(kotlin("test"))
 }
