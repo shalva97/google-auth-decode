@@ -66,8 +66,18 @@ tasks.withType<ShadowJar> {
 }
 
 publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/shalva97/google-auth-decode")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
     publications {
-        create<MavenPublication>("maven") {
+        register<MavenPublication>("gpr") {
             from(components["kotlin"])
         }
     }
