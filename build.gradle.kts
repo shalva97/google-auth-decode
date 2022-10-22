@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "com.github.shalva97"
-version = "0.0.13"
+version = "0.0.14"
 
 kotlin {
     jvm {
