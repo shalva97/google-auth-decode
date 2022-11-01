@@ -76,11 +76,6 @@ publishing {
             }
         }
     }
-    publications {
-        register<MavenPublication>("gpr") {
-            from(components["kotlin"])
-        }
-    }
 }
 
 repositories {
