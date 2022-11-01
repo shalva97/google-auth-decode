@@ -1,6 +1,7 @@
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import com.github.shalva97.decodeGoogleAuthMigrationURI
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.*
@@ -40,7 +41,7 @@ fun main() {
                 textAlign("right")
             }
         }) {
-            Text("Version: " + "0.0.15") // TODO somehow get version name from Gradle
+            Text("Version: " + "0.0.16") // TODO somehow get version name from Gradle
         }
     }
 }

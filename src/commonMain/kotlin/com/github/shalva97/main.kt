@@ -1,3 +1,5 @@
+package com.github.shalva97
+
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 

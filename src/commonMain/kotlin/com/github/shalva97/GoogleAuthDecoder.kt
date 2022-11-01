@@ -1,3 +1,5 @@
+package com.github.shalva97
+
 import com.eygraber.uri.Uri
 import io.matthewnelson.component.base64.decodeBase64ToArray
 import io.matthewnelson.component.encoding.base32.encodeBase32

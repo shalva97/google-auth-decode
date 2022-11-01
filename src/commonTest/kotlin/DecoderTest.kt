@@ -1,3 +1,6 @@
+import com.github.shalva97.decodeGoogleAuthMigrationURI
+import com.github.shalva97.decodeOTPSecret
+import com.github.shalva97.extractQueryData
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -39,7 +42,7 @@ class DecoderTest {
 //        val rawSecret2 = "deadbeef".hexToByteArray()
 //        val secret2 = "32W353Y"
 //
-//        assertEquals(decodeOTPSecret(rawSecret2), secret2)
+//        assertEquals(com.github.shalva97.decodeOTPSecret(rawSecret2), secret2)
     }
 
     @Test

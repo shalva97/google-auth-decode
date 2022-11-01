@@ -1,3 +1,5 @@
+package com.github.shalva97
+
 data class Payload(
     val otpParameters: List<OtpParameters>,
     val version: Int? = null,
