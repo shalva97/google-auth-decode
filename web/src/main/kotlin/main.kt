@@ -40,7 +40,7 @@ fun main() {
                 textAlign("right")
             }
         }) {
-            Text("Version: " + "0.0.14") // TODO somehow get version name from Gradle
+            Text("Version: " + "0.0.15") // TODO somehow get version name from Gradle
         }
     }
 }
