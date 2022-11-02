@@ -23,6 +23,7 @@ kotlin {
     mingwX64 {
         binaries {
             executable {
+                entryPoint = "com.github.shalva97.main"
                 baseName = "google-auth-decode-$version-mingwX64"
             }
         }
@@ -31,7 +32,7 @@ kotlin {
     macosX64 {
         binaries {
             executable {
-                entryPoint = "main"
+                entryPoint = "com.github.shalva97.main"
                 baseName = "google-auth-decode-$version-macosX64"
             }
         }
@@ -44,6 +45,7 @@ kotlin {
     linuxX64 {
         binaries {
             executable {
+                entryPoint = "com.github.shalva97.main"
                 baseName = "google-auth-decode-$version-linuxX64"
             }
         }
@@ -56,7 +58,7 @@ kotlin {
 
 tasks.withType<ShadowJar> {
     manifest {
-        attributes("Main-Class" to "MainKt")
+        attributes("Main-Class" to "com.github.shalva97.MainKt")
     }
     archiveClassifier.set("all")
     val main by kotlin.jvm().compilations
