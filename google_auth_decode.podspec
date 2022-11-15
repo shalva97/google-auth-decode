@@ -1,19 +1,19 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'google_auth_decode'
-    spec.version                  = '0.0.16'
-    spec.homepage                 = ''
+    spec.version                  = '1.0'
+    spec.homepage                 = 'https://github.com/shalva97/google-auth-decode'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
     spec.license                  = ''
-    spec.summary                  = ''
-    spec.vendored_frameworks      = 'build/cocoapods/framework/google_auth_decode.framework'
+    spec.summary                  = 'Decode Google Authenticator's QR code message'
+    spec.vendored_frameworks      = 'build/cocoapods/framework/google-auth-decode.framework'
     spec.libraries                = 'c++'
-                
+    spec.ios.deployment_target = '14.1'
                 
                 
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':',
-        'PRODUCT_MODULE_NAME' => 'google_auth_decode',
+        'PRODUCT_MODULE_NAME' => 'google-auth-decode',
     }
                 
     spec.script_phases = [
