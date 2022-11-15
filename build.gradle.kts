@@ -2,6 +2,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode.BITCODE
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType.DEBUG
 import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType.RELEASE
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     kotlin("multiplatform") version "1.7.0"
@@ -33,11 +34,17 @@ kotlin {
         }
     }
 
-    macosX64 {
+    val xcf = XCFramework()
+
+    macosX64() {
         binaries {
             executable {
                 entryPoint = "com.github.shalva97.main"
                 baseName = "google-auth-decode-$version-macosX64"
+            }
+            framework {
+                baseName = "Demo"
+                xcf.add(this)
             }
         }
     }
@@ -57,6 +64,9 @@ kotlin {
 
     sourceSets {
         val commonMain by getting
+        val macosX64Main by getting {
+            dependsOn(commonMain)
+        }
     }
 
     cocoapods {
@@ -68,20 +78,21 @@ kotlin {
 
         // Optional properties
         // Configure the Pod name here instead of changing the Gradle project name
-        name = "google-auth-decode-CocoaPod"
+//        name = "google-auth-decode-CocoaPod"
+        ios.deploymentTarget = "14.1"
 
         framework {
             // Required properties
             // Framework name configuration. Use this property instead of deprecated 'frameworkName'
             baseName = "google-auth-decode"
-
-            // Optional properties
-            // Dynamic framework support
-            isStatic = false
-            // Dependency export
-            export(rootProject)
-            transitiveExport = false // This is default.
-            // Bitcode embedding
+//
+//            // Optional properties
+//            // Dynamic framework support
+//            isStatic = false
+//            // Dependency export
+//            export(rootProject)
+//            transitiveExport = false // This is default.
+//            // Bitcode embedding
             embedBitcode(BITCODE)
         }
 
