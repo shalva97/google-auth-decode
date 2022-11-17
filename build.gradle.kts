@@ -1,7 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import org.jetbrains.kotlin.gradle.plugin.mpp.BitcodeEmbeddingMode.BITCODE
-import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType.DEBUG
-import org.jetbrains.kotlin.gradle.plugin.mpp.NativeBuildType.RELEASE
+import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
     kotlin("multiplatform") version "1.7.0"
@@ -10,7 +8,7 @@ plugins {
     id("java")
     id("com.adarshr.test-logger") version "3.2.0"
     `maven-publish`
-    kotlin("native.cocoapods") version "1.7.0"
+//    id("co.touchlab.faktory.kmmbridge") version "0.3.2"
 }
 
 group = "com.github.shalva97"
@@ -33,11 +31,17 @@ kotlin {
         }
     }
 
-    macosX64 {
+    val xcf = XCFramework()
+
+    macosX64() {
         binaries {
             executable {
                 entryPoint = "com.github.shalva97.main"
                 baseName = "google-auth-decode-$version-macosX64"
+            }
+            framework {
+                baseName = "Demo"
+                xcf.add(this)
             }
         }
     }
@@ -57,37 +61,9 @@ kotlin {
 
     sourceSets {
         val commonMain by getting
-    }
-
-    cocoapods {
-        // Required properties
-        // Specify the required Pod version here. Otherwise, the Gradle project version is used.
-        version = "1.0"
-        summary = "Decode Google Authenticator's QR code message"
-        homepage = "https://github.com/shalva97/google-auth-decode"
-
-        // Optional properties
-        // Configure the Pod name here instead of changing the Gradle project name
-        name = "google-auth-decode-CocoaPod"
-
-        framework {
-            // Required properties
-            // Framework name configuration. Use this property instead of deprecated 'frameworkName'
-            baseName = "google-auth-decode"
-
-            // Optional properties
-            // Dynamic framework support
-            isStatic = false
-            // Dependency export
-            export(rootProject)
-            transitiveExport = false // This is default.
-            // Bitcode embedding
-            embedBitcode(BITCODE)
+        val macosX64Main by getting {
+            dependsOn(commonMain)
         }
-
-        // Maps custom Xcode configuration to NativeBuildType
-        xcodeConfigurationToNativeBuildType["CUSTOM_DEBUG"] = DEBUG
-        xcodeConfigurationToNativeBuildType["CUSTOM_RELEASE"] = RELEASE
     }
 }
 
@@ -114,6 +90,13 @@ publishing {
         }
     }
 }
+//
+//kmmbridge {
+//    githubReleaseArtifacts()
+//    githubReleaseVersions()
+//    spm()
+//    versionPrefix.set("0.3")
+//}
 
 repositories {
     mavenCentral()
