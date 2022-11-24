@@ -11,7 +11,7 @@ plugins {
 }
 
 group = "com.github.shalva97"
-version = "0.0.16"
+version = "0.0.17"
 
 kotlin {
     jvm {
@@ -39,7 +39,7 @@ kotlin {
                 baseName = "google-auth-decode-$version-macosX64"
             }
             framework {
-                baseName = "Demo"
+                baseName = "com_github_shalva97"
                 xcf.add(this)
             }
         }
