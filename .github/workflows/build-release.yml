@@ -36,8 +36,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ./build/bin/*/releaseExecutable/google-auth-decode-*exe
-            ./build/libs/*-all.jar
+            ./shared/build/bin/*/releaseExecutable/google-auth-decode-*exe
+            ./shared/build/libs/*-all.jar
             ./shared.xcframework.zip
           tag_name: ${{steps.tag.outputs.tag}}
           name: version v${{steps.tag.outputs.tag}}
