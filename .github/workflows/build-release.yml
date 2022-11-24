@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 jobs:
   build:
-    name: 'Build the project'
+    name: 'Build artifacts and publish'
     runs-on: macos-12
     outputs:
       tag-name: ${{ steps.tag.outputs.tag }}
