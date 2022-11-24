@@ -26,11 +26,18 @@ jobs:
       - name: 'export version number'
         id: tag
         run: ./gradlew properties -q | grep "version:" | awk '{ print "::set-output name=tag::"$2 }'
+      - name: 'Build XCFramework'
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: shared:assembleSharedReleaseXCFramework
+      - name: 'Zip XCFramework'
+        run: zip -r shared.xcframework.zip ./shared/build/XCFrameworks/release/shared.xcframework
       - name: 'Create GitHub Release'
         uses: softprops/action-gh-release@v1
         with:
           files: |
             ./build/bin/*/releaseExecutable/google-auth-decode-*exe
             ./build/libs/*-all.jar
+            ./shared.xcframework.zip
           tag_name: ${{steps.tag.outputs.tag}}
           name: version v${{steps.tag.outputs.tag}}
