@@ -7,17 +7,13 @@ plugins {
     id("java")
     id("com.adarshr.test-logger") version "3.2.0"
     `maven-publish`
-//    id("co.touchlab.faktory.kmmbridge") version "0.3.2"
 }
-
-group = "com.github.shalva97"
-version = "0.0.17"
 
 kotlin {
     jvm {
         val main by compilations.getting {
             kotlinOptions {
-                jvmTarget = "11"
+                jvmTarget = JavaVersion.VERSION_11.toString()
             }
         }
     }
@@ -89,13 +85,6 @@ publishing {
         }
     }
 }
-//
-//kmmbridge {
-//    githubReleaseArtifacts()
-//    githubReleaseVersions()
-//    spm()
-//    versionPrefix.set("0.3")
-//}
 
 repositories {
     mavenCentral()
