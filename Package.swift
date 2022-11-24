@@ -8,7 +8,7 @@ let packageName = "shared"
 let package = Package(
     name: packageName,
     platforms: [
-        .macos(.x86_64)
+        .macOS(.v11)
     ],
     products: [
         .library(
@@ -20,6 +20,7 @@ let package = Package(
         .binaryTarget(
             name: packageName,
             url: remoteKotlinUrl,
+            checksum: remoteKotlinChecksum
         )
     ]
 )
