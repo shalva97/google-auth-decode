@@ -38,6 +38,6 @@ jobs:
           files: |
             ./shared/build/bin/*/releaseExecutable/google-auth-decode-*exe
             ./shared/build/libs/*-all.jar
-            ./shared.xcframework.zip
+            ./shared/build/XCFrameworks/release/shared.xcframework.zip
           tag_name: ${{steps.tag.outputs.tag}}
           name: version v${{steps.tag.outputs.tag}}
