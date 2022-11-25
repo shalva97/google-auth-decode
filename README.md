@@ -43,7 +43,7 @@ dependencyResolutionManagement {
 
 Step 2. Add the dependency
 
-    implementation("com.github.shalva97:google-auth-decode:0.0.17")
+    implementation("com.github.shalva97:google-auth-decode:0.0.18")
 
 # Usage
 

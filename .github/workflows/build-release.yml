@@ -31,7 +31,7 @@ jobs:
         with:
           arguments: shared:assembleSharedReleaseXCFramework
       - name: 'Zip XCFramework'
-        run: zip -r shared.xcframework.zip ./shared/build/XCFrameworks/release/shared.xcframework
+        run: cd ./shared/build/XCFrameworks/release; zip -r shared.xcframework.zip shared.xcframework
       - name: 'Create GitHub Release'
         uses: softprops/action-gh-release@v1
         with:
