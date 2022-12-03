@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.shalva97"
-version = "0.0.18"
+version = findProperty("version") as String
 
 kotlin {
     js(IR) {
