@@ -4,7 +4,7 @@ on: workflow_dispatch
 
 jobs:
   build:
-    name: 'Build the project'
+    name: 'Build artifacts and publish'
     runs-on: macos-12
     outputs:
       tag-name: ${{ steps.tag.outputs.tag }}
@@ -26,11 +26,18 @@ jobs:
       - name: 'export version number'
         id: tag
         run: ./gradlew properties -q | grep "version:" | awk '{ print "::set-output name=tag::"$2 }'
+      - name: 'Build XCFramework'
+        uses: gradle/gradle-build-action@v2
+        with:
+          arguments: shared:assembleSharedReleaseXCFramework
+      - name: 'Zip XCFramework'
+        run: cd ./shared/build/XCFrameworks/release; zip -r shared.xcframework.zip shared.xcframework
       - name: 'Create GitHub Release'
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            ./build/bin/*/releaseExecutable/google-auth-decode-*exe
-            ./build/libs/*-all.jar
+            ./shared/build/bin/*/releaseExecutable/google-auth-decode-*exe
+            ./shared/build/libs/*-all.jar
+            ./shared/build/XCFrameworks/release/shared.xcframework.zip
           tag_name: ${{steps.tag.outputs.tag}}
           name: version v${{steps.tag.outputs.tag}}

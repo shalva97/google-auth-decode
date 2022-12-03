@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.shalva97"
-version = "0.0.16"
+version = "0.0.18"
 
 kotlin {
     js(IR) {
@@ -15,6 +15,7 @@ kotlin {
         val main by getting
     }
 }
+
 repositories {
     mavenCentral()
     maven { url = uri("https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven") }
@@ -29,6 +30,5 @@ dependencies {
 
     implementation(compose.web.core)
     implementation(compose.runtime)
-    implementation(rootProject)
-
+    implementation(project(":shared"))
 }
