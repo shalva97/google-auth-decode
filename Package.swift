@@ -8,7 +8,7 @@ let packageName = "com_github_shalva97"
 let package = Package(
     name: packageName,
     platforms: [
-        .macOS(.v13)
+        .macOS(.v10_13)
     ],
     products: [
         .library(
