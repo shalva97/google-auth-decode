@@ -43,7 +43,6 @@ kotlin {
                 baseName = "google-auth-decode-$version-macosX64"
             }
             framework {
-                baseName = "com_github_shalva97"
                 xcf.add(this)
             }
         }
