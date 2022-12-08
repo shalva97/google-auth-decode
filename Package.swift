@@ -2,7 +2,7 @@
 import PackageDescription
 
 let remoteKotlinUrl = "https://github.com/shalva97/google-auth-decode/releases/download/0.0.19/shared.xcframework.zip"
-let remoteKotlinChecksum = "59d52e04c78f7a91548efbc61f30ded13bd7a4bf41f55cf24f790d33d010b770"
+let remoteKotlinChecksum = "7989f382aa846853cfa6d24b06e0f62c6eabef47160c9b1055273b71d33e7a82"
 let packageName = "com_github_shalva97"
 
 let package = Package(
