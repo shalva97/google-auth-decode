@@ -3,9 +3,6 @@ plugins {
     id("org.jetbrains.compose") version "1.2.1"
 }
 
-group = "com.github.shalva97"
-version = findProperty("version") as String
-
 kotlin {
     js(IR) {
         browser()
