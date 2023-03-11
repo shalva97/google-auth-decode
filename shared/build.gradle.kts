@@ -4,18 +4,9 @@ plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization") version "1.7.10"
     id("com.github.johnrengelman.shadow") version "7.1.2"
-    id("java")
     id("com.adarshr.test-logger") version "3.2.0"
-//    id("co.touchlab.faktory.kmmbridge") version "0.3.2"
     `maven-publish`
 }
-
-//kmmbridge {
-//    githubReleaseArtifacts()
-//    githubReleaseVersions()
-//    versionPrefix.set("0.1")
-//    spm()
-//}
 
 kotlin {
     jvm {

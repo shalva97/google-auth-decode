@@ -3,4 +3,4 @@ plugins {
 }
 
 group = "com.github.shalva97"
-version = findProperty("version") as String
+version = "0.0.19"
