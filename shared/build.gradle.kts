@@ -102,7 +102,7 @@ dependencies {
     commonMainImplementation("io.matthewnelson.kotlin-components:encoding-base64:1.1.3")
     commonMainImplementation("io.matthewnelson.kotlin-components:encoding-base32:1.1.3")
     commonMainImplementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.5")
-    commonMainImplementation("com.eygraber:uri-kmp:0.0.9")
+    commonMainImplementation("com.eygraber:uri-kmp:0.0.16")
     commonTestImplementation(kotlin("test"))
 }
 
